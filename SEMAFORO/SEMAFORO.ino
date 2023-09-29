@@ -1,24 +1,3 @@
-/*
-  Arduino Starter Kit example
-  Project 2 - Spaceship Interface
-
-  This sketch is written to accompany Project 2 in the Arduino Starter Kit
-
-  Parts required:
-  - one green LED
-  - two red LEDs
-  - pushbutton
-  - 10 kilohm resistor
-  - three 220 ohm resistors
-
-  created 13 Sep 2012
-  by Scott Fitzgerald
-
-  https://store.arduino.cc/genuino-starter-kit
-
-  This example code is part of the public domain.
-*/
-
 // Create a global variable to hold the state of the switch. This variable is
 // persistent throughout the program. Whenever you refer to switchState, you’re
 // talking about the number it holds
