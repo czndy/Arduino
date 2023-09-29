@@ -21,16 +21,32 @@ void loop() {
 
   Serial.println(distance);
 
-  //se a distancia for menor que 20cm durante 500ms, abre a lixeira por 10 segundos depois fecha
+  //se a distancia for menor que 20cm , abre a lixeira por x segundos depois fecha
   if(distance < 20.0){
-    delay(500);
     distance = hcsr04.dist();
     Serial.println(distance);
-    if(distance < 20.0){
-      servo.write(90);
-      delay(10000);
-      servo.write(0);
-    }
+    //verifica se já tiraram a mão da frente do sensor para abrir a tampa
+    do{
+      Serial.println("entrou no DO");
+      distance = hcsr04.dist();
+      Serial.println(distance);
+      if(distance > 20.0){
+        delay(500);
+        servo.write(90);
+        delay(5000);
+        //verifica se o usuário continua com a mão na frente do sensor para manter a tampa aberta
+        do{
+          distance = hcsr04.dist();
+          if(distance > 20.0){
+            delay(750);
+            servo.write(0);
+          }else{
+            Serial.println("Mantendo tampa aberta");
+          }
+        }while(distance < 20.0);
+      }
+    }while(distance < 20.0);
+      
   }
   delay(200);
 }
