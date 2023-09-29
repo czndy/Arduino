@@ -5,7 +5,9 @@
 #define echo_pin 3
 #define trig_pin 4
 
+//inicia o servo
 Servo servo;
+//inicia o sensor de distancia
 HCSR04 hcsr04(trig_pin, echo_pin);
 
 void setup() {
@@ -15,11 +17,11 @@ void setup() {
 }
 
 void loop() {
-  float distance = 0.0;
-  distance = hcsr04.dist();
+  float distance = hcsr04.dist();
 
   Serial.println(distance);
 
+  //se a distancia for menor que 20cm durante 500ms, abre a lixeira por 10 segundos depois fecha
   if(distance < 20.0){
     delay(500);
     distance = hcsr04.dist();
